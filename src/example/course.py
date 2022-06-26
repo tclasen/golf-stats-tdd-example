@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import NewType
 from typing import Protocol
 
 
@@ -11,11 +12,15 @@ class InvalidParCount(ValueError):
     pass
 
 
+CourseSummary = NewType("CourseSummary", tuple[str, list[int]])
+
+
 class CourseRepository(Protocol):
     def get_course_by_name(self, name: str) -> Course:
         ...
 
-    # return Course(name=name, par=[4] * 18)
+    def get_all_course_names_and_par(self) -> list[CourseSummary]:
+        ...
 
 
 class Course:
@@ -26,6 +31,9 @@ class Course:
     def __init__(self, name: str, par: list[int]) -> None:
         self._name = name
         self._par = self._validate_par(par)
+
+    def __repr__(self) -> str:
+        return f"Course(name={self._name}, par={self._par})"
 
     @classmethod
     def _validate_par(cls, par: list[int]) -> list[int]:

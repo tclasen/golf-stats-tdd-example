@@ -1,6 +1,7 @@
 from typing import Optional
 
 from example.course import Course
+from example.course import CourseSummary
 
 
 class InMemoryCourseRepository:
@@ -15,3 +16,6 @@ class InMemoryCourseRepository:
             if course._name == name:
                 return course
         raise ValueError("Couldn't find course!")
+
+    def get_all_course_names_and_par(self) -> list[CourseSummary]:
+        return sorted((i._name, i._par) for i in self._courses)

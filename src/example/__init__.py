@@ -7,6 +7,7 @@ from example.player import InvalidThrowValue
 from example.player import Player
 from example.player import TooManyThrows
 from example.repositories.inmemory import InMemoryCourseRepository
+from example.webapp import app
 
 __all__ = [
     "Player",
@@ -18,4 +19,5 @@ __all__ = [
     "Game",
     "CourseRepository",
     "InMemoryCourseRepository",
+    "app",
 ]
